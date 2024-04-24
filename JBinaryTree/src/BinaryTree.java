@@ -27,8 +27,6 @@ public class BinaryTree<T, C extends Comparator<T>> {
 
     public void insert(T value) {
         int x = comparator.compare(this.value, value);
-        if (x == 0) { return; } // No duplicates.
-
         if (x < 0) {
             if (right == null) {
                 right = new BinaryTree<T, C>(value, comparator);
