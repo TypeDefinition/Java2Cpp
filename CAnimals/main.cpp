@@ -1,5 +1,6 @@
 ﻿#include <iostream>
 #include <vector>
+#include <type_traits>
 
 using namespace std;
 
@@ -39,19 +40,21 @@ struct Fish : public Animal {
 };
 
 template <class T>
-void foo(vector<T> vec) {
+void foo(vector<T> vec) requires is_base_of_v<T, Penguin> {
+	cout << "foo<T>" << endl;
 	vec.push_back(T{});
 	vec.back().walk();
 }
 
 template <class T>
-void bar(vector<T> vec) {
+void bar(vector<T> vec) requires is_base_of_v<Insect, T> {
+	cout << "bar<T>" << endl;
 	vec.push_back(T{});
 	vec.back().crawl();
 }
 
 template <class T>
-void baz(T animal) requires can_swim<T> {
+void baz(T animal) {
 	cout << "baz<T>" << endl;
 	animal.swim();
 }
@@ -64,15 +67,19 @@ void baz(Penguin animal) {
 
 template <class T>
 void kee(T animal) requires can_fly<T> {
-	// Does not call fly().
+	cout << "kee<T>" << endl;
+	// Does not even call fly().
 }
 
 int main()
 {
-	foo(vector<Bird>{});
-	// foo(vector<Insect>()); // Cannot compile
+	foo(vector<Bird>{}); // Is ancestor of Penguin.
+	foo(vector<Penguin>{}); // Is Penguin.
+	// foo(vector<Gentoo>{}); // Cannot compile.
+	// foo(vector<Insect>()); // Cannot compile.
 
-	bar(vector<Insect>{});
+	bar(vector<Insect>{}); // Is Insect.
+	bar(vector<Ladybird>{}); // Is descendant of Insect.
 	// bar(vector<Bird>{}); // Cannot compile.
 
 	baz(Fish{}); // Invokes baz<T>.

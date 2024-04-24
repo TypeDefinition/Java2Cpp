@@ -27,8 +27,8 @@ public class Main {
         public void swim() {}
     }
 
-    public void foo(List<? super Bird> list) {
-        list.add(new Bird());
+    public void foo(List<? super Penguin> list) {
+        list.add(new Penguin());
         list.getLast().walk(); // Cannot compile.
     }
 
