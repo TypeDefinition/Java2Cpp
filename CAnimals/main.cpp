@@ -59,24 +59,16 @@ void kee(T animal) requires can_fly<T> {
 	// Does not even call fly().
 }
 
+template <int N>
+void print_number() {
+	cout << "Printing the number " << N << "." << endl;
+}
+
 int main()
 {
-	foo(vector<Bird>{}); // Is ancestor of Penguin.
-	foo(vector<Penguin>{}); // Is Penguin.
-	// foo(vector<Gentoo>{}); // Cannot compile.
-	// foo(vector<Insect>()); // Cannot compile.
-
-	bar(vector<Insect>{}); // Is Insect.
-	bar(vector<Ladybird>{}); // Is descendant of Insect.
-	// bar(vector<Bird>{}); // Cannot compile.
-
-	baz(Fish{}); // Invokes baz<T>.
-	baz(Penguin{}); // Invokes baz<Penguin>.
-	baz(Gentoo{}); // Invokes baz<T>.
-	// baz(Ant{}); // Cannot compile.
-
-	kee(Crow{});
-	// kee(Fish{}); // Cannot compile.
+	print_number<1>();
+	print_number<2>();
+	print_number<5>();
 
 	return 0;
 }
