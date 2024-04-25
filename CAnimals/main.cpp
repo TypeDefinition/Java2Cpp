@@ -16,28 +16,16 @@ concept can_fly = requires(T animal) {
 
 struct Animal {};
 
-struct Insect : public Animal {
-	virtual void crawl() {};
-};
+struct Insect : public Animal { void crawl() {}; };
 struct Ant : public Insect {};
-struct Ladybird : public Insect {
-	void fly() {}
-};
+struct Ladybird : public Insect { void fly() {} };
 
-struct Bird : public Animal {
-	virtual void walk() {}
-};
-struct Penguin : public Bird {
-	void swim() {}
-};
+struct Bird : public Animal { void walk() {} };
+struct Crow : public Bird { void fly() {} };
+struct Penguin : public Bird { void swim() {} };
 struct Gentoo : public Penguin {};
-struct Crow : public Bird {
-	void fly() {}
-};
 
-struct Fish : public Animal {
-	void swim() {}
-};
+struct Fish : public Animal { void swim() {} };
 
 template <class T>
 void foo(vector<T> vec) requires is_base_of_v<T, Penguin> {

@@ -8,24 +8,14 @@ public class Main {
         public void crawl() {}
     }
     class Ant extends Insect {}
-    class Ladybird extends Insect {
-        public void fly() {}
-    }
+    class Ladybird extends Insect { public void fly() {} }
 
-    class Bird extends Animal {
-        public void walk() {}
-    }
-    class Penguin extends Bird {
-        public void swim() {}
-    }
+    class Bird extends Animal { public void walk() {} }
+    class Crow extends Bird { public void fly() {} }
+    class Penguin extends Bird { public void swim() {} }
     class Gentoo extends Penguin {}
-    class Crow extends Bird {
-        public void fly() {}
-    }
 
-    class Fish extends Animal {
-        public void swim() {}
-    }
+    class Fish extends Animal { public void swim() {} }
 
     public void foo(List<? super Penguin> list) {
         list.add(new Penguin());
