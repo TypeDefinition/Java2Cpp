@@ -41,7 +41,7 @@ public:
 	bool operator==(const matrix& _rhs) const {
 		bool equal = true;
 		for (size_t i = 0; i < size(); i++) {
-			equal &= maths_util::approx_equal(values_[i], _rhs.values_[i]);
+			equal &= (abs(values_[i] - _rhs.values_[i]) < 0.00001f);
 		}
 		return equal;
 	}
@@ -123,11 +123,12 @@ public:
 		out.precision(_precision);
 		out << std::fixed;
 		for (size_t i = 0; i < Rows; ++i) {
+            out << '|';
 			for (size_t j = 0; j < Columns; ++j) {
 				out << (*this)[j][i];
 				if (j < Columns - 1) { out << ", "; }
 			}
-			out << '\n';
+			out << '|' << '\n';
 		}
 		return out.str();
 	}
