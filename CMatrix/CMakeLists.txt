@@ -9,13 +9,13 @@ if (POLICY CMP0141)
   set(CMAKE_MSVC_DEBUG_INFORMATION_FORMAT "$<IF:$<AND:$<C_COMPILER_ID:MSVC>,$<CXX_COMPILER_ID:MSVC>>,$<$<CONFIG:Debug,RelWithDebInfo>:EditAndContinue>,$<$<CONFIG:Debug,RelWithDebInfo>:ProgramDatabase>>")
 endif()
 
-project ("Matrix")
+project (CMatrix)
 
 # Add source to this project's executable.
-add_executable (Matrix "main.cpp" "matrix.h")
+add_executable (CMatrix "main.cpp" "matrix.h")
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
-  set_property(TARGET Matrix PROPERTY CXX_STANDARD 20)
+  set_property(TARGET CMatrix PROPERTY CXX_STANDARD 20)
 endif()
 
 # TODO: Add tests and install targets if needed.
